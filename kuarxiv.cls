@@ -524,7 +524,7 @@ headsep=13pt,%
 {\thesection.}
 {0.5em}
 %{\MakeUppercase{#1}}[]
-{#1}
+{\makefirstuc{#1}}
 []
 
 \titleformat{name=\section,numberless}
@@ -538,13 +538,13 @@ headsep=13pt,%
 {\bfseries}
 {\thesubsection.}
 {0.5em}
-{#1}
+{\makefirstuc{#1}}
 []
 \titleformat{\subsubsection}% [runin] If want to have inline for the subsubsect
 {\bfseries\itshape}
 {\thesubsubsection.}
 {0.5em}
-{#1}
+{\makefirstuc{#1}}
 []
 
 
