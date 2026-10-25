@@ -1,0 +1,136 @@
+\usepackage{float,epstopdf}
+\usepackage{bbm}
+
+
+\usepackage{natbib}
+\setcitestyle{numbers,square}
+% Give citation numerals a restrained emphasis; brackets and text keep their weight.
+\renewcommand*{\citenumfont}[1]{{\bfseries #1}}
+
+% \usepackage{subfig}
+% \usepackage{subfigure}
+\usepackage{subcaption}
+
+\usepackage{mathtools}
+\usepackage{dsfont}
+% multicol is only meaningful inside a single-column article.
+\makeatletter
+\if@twocolumn\else\usepackage{multicol}\fi
+\makeatother
+\usepackage{makecell}
+\usepackage{multirow} 
+\usepackage{mathrsfs}
+\usepackage[amssymb, thickqspace]{SIunits}
+\usepackage{pgfplotstable}
+\pgfplotsset{compat=1.18}
+% \usepackage[pagebackref,breaklinks,colorlinks]{hyperref}
+
+
+\usepackage{arydshln}
+% \newcolumntype{s}{>{\columncolor[HTML]{E9E9E9}}c}
+\usepackage[normalem]{ulem} % [normalem] prevents the package from changing the default behavior of `\emph` to underline.
+
+
+
+\usepackage{cases}
+\usepackage{wrapfig}
+
+
+% \usepackage{algorithm}
+% \usepackage{algorithmic}
+% \newcommand{\theHalgorithm}{\arabic{algorithm}}
+
+% \renewcommand{\algorithmicrequire}{\textbf{Input:}} 
+% \renewcommand{\algorithmicensure}{\textbf{Output:}}
+
+
+% Todonotes is useful during development; simply uncomment the next line
+%    and comment out the line below the next line to turn off comments
+
+\usepackage{thmtools}
+% LaTeX 2026-06 adds native sibling-counter aliases. thmtools <= 0.76
+% otherwise creates the same alias a second time before \newtheorem.
+% Keep the legacy path on old kernels; on new kernels let LaTeX own aliases
+% and retain thmtools' per-environment automatic reference names.
+% Upstream: https://github.com/muzimuzhi/thmtools/issues/75
+\makeatletter
+\@ifundefined{newcounteralias}{}{%
+  \renewcommand\thmt@autorefsetup{%
+    \@xa\def\csname\thmt@envname autorefname\@xa\endcsname\@xa{\thmt@thmname}%
+  }%
+}
+\makeatother
+\usepackage{thm-restate}
+% tabu is deprecated; avoid loading it in Overleaf
+
+% Korea University palette is defined in kuarxiv.cls
+\newcommand{\ourclr}{KUCrimson}
+% \usepackage[comma,authoryear,compress]{natbib}
+\usepackage{titletoc}
+
+\lstdefinestyle{promptstyle}{
+  basicstyle=\ttfamily\footnotesize,
+  breaklines=true,
+  breakautoindent=false,
+  breakindent=0pt,
+  postbreak=\mbox{\textcolor{gray}{$\hookrightarrow$}\space},
+  columns=fullflexible,
+  keepspaces=true,
+  frame=single,
+  framesep=5pt,
+  xleftmargin=6pt,
+  xrightmargin=6pt,
+  aboveskip=8pt,
+  belowskip=8pt,
+  showstringspaces=false,
+}
+% Organized paper assets: keep figures as standalone PDFs.
+\graphicspath{{Figure/}{TemplateAssets/}}
+\usepackage{fontawesome5,refcount}
+\newtcolorbox{simpleElegantQuote}{
+  colback=KULightBackground,colframe=KUCrimson,
+  boxrule=0.5pt,arc=2mm,boxsep=4pt,
+  left=10pt,right=10pt,top=8pt,bottom=8pt,fontupper=\itshape}
+% Legacy affiliation shortcut retained for existing section sources.
+\newcommand{\ku}{\textsuperscript{\textcolor{KUCrimson}{1}}}
+
+% User request: use a restrained citation color and Korea University red for links.
+% Brighter citation red and a companion link red improve separation from body text.
+\hypersetup{colorlinks=true,linkcolor=KULink,citecolor=KUCitation,urlcolor=KULink}
+\emergencystretch=3em
+\setcounter{tocdepth}{3}
+\renewcommand{\bibsection}{\section*{\refname}\phantomsection\addcontentsline{toc}{section}{\refname}}
+% These markers execute inside the actual Contents, including its last entry.
+\AtEndDocument{\addtocontents{toc}{\protect\nobreak\protect\label{ku:toc:end}}}
+
+\makeatletter
+\newcommand{\KUContents}{%
+% Contents precedes the first manuscript section; includes the appendix.
+\begingroup
+\small
+\setlength{\parskip}{0pt}
+\patchcmd{\l@section}{1.0em \@plus\p@}{.45em \@plus .5pt}{}{}
+\addtocontents{toc}{\protect\label{ku:toc:start}}
+\tableofcontents
+\endgroup
+% A contents spanning three or more pages is followed by a clean body page.
+% Undefined labels yield zero on the first pass; repeat compilation to stabilize.
+\ifnum\numexpr\getpagerefnumber{ku:toc:end}-\getpagerefnumber{ku:toc:start}\relax>1
+  \clearpage
+\else
+  \Needspace{10\baselineskip}
+\fi
+
+
+
+
+}
+
+\makeatother
+% Original request: cite你选一个正常美观的颜色，link的cite用高丽的red
+
+% Keep bibliography back-links readable and unobtrusive.
+\renewcommand*{\backref}[1]{}
+\renewcommand*{\backrefalt}[4]{%
+  \ifcase#1\or\space{\footnotesize(Cited on p.~#2.)}%
+  \else\space{\footnotesize(Cited on pp.~#2.)}\fi}

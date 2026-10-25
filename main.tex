@@ -1,0 +1,36 @@
+% Select main.tex and pdfLaTeX in Overleaf.
+\documentclass[11pt,letterpaper,logo]{kuarxiv}
+\input{preamble}
+\input{command} % Sole owner of theorem definitions; load once.
+\input{Metadata/paper}
+\input{Metadata/authors}
+
+\begin{document}
+\begin{abstract}
+\input{Metadata/abstract}
+\end{abstract}
+\maketitle
+\KUContents
+
+
+
+
+
+
+
+
+% Remove this input when the template guide is no longer needed.
+\clearpage
+\appendix
+\phantomsection\addcontentsline{toc}{section}{Appendices}
+
+
+
+% \input{TemplateGuide}
+\FloatBarrier
+
+
+
+\bibliographystyle{IEEEtranN}
+\bibliography{References/main}
+\end{document}
