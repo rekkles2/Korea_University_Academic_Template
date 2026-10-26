@@ -187,7 +187,8 @@ headsep=13pt,%
 \newcommand{\copyrightfont}{\normalfont\fontsize{7}{9}\selectfont}
 \newcommand{\footerfont}{\color{black}\normalfont\fontsize{8}{10}\selectfont}
 \newcommand{\subjectfont}{\color{white}\bfseries\fontsize{10}{12}\selectfont}
-\newcommand{\headingfont}{\color{Black}\bfseries\fontsize{13}{14}\selectfont}
+% Section headings: Helvetica-compatible bold sans serif, inspired by the Meta reference.
+\newcommand{\headingfont}{\normalfont\fontfamily{phv}\bfseries\color{Black}\fontsize{13}{16}\selectfont}
 
 \newcommand{\keywords}[1]{\def\@keywords{#1}}
 \newtoks\correspondingauthor
@@ -520,24 +521,25 @@ headsep=13pt,%
 \makeatother
 
 \titleformat{\section}
-{\large\bfseries\headingfont}
+{\headingfont}
 {\thesection}
-{0.5em}
+{1em}
 %{\MakeUppercase{#1}}[]
 {\makefirstuc{#1}}
 []
 
 \titleformat{name=\section,numberless}
-{\large\bfseries\headingfont}
+{\headingfont}
 {}
 {0em}
 %{\MakeUppercase{#1}}[]
 {#1}
 []
+% Subsections retain the body serif family, with bold upright text.
 \titleformat{\subsection}
-{\bfseries}
+{\normalfont\normalsize\bfseries\color{Black}}
 {\thesubsection}
-{0.5em}
+{1em}
 {\makefirstuc{#1}}
 []
 \titleformat{\subsubsection}% [runin] If want to have inline for the subsubsect
