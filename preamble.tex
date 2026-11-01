@@ -134,3 +134,8 @@
 \renewcommand*{\backrefalt}[4]{%
   \ifcase#1\or\space{\footnotesize(Cited on p.~#2.)}%
   \else\space{\footnotesize(Cited on pp.~#2.)}\fi}
+  
+% Keep medium-sized figures with surrounding text.
+\renewcommand{\floatpagefraction}{0.8}
+\renewcommand{\topfraction}{0.9}
+\renewcommand{\textfraction}{0.08}
